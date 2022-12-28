@@ -1,8 +1,10 @@
 from flask import Blueprint, request, jsonify, current_app as app
 from werkzeug.utils import secure_filename
 import os 
+import generateEmbedding 
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
+VOTER_IMAGE_DATABASE_NAME = "voter" 
 
 voter_info_api = Blueprint('voter_info_route', __name__)
 
@@ -20,8 +22,9 @@ def upload():
         if not os.path.exists(app.instance_path):
             os.mkdir(app.instance_path)
         uploaded_image_path = os.path.join(app.instance_path, secure_filename(uploaded_image.filename))
-        uploaded_image.save(uploaded_image_path)
-        # os.remove(uploaded_image_path) - To be uncommented once embedding is done
+        uploaded_image.save(uploaded_image_path) 
+        generateEmbedding.generate([uploaded_image_path], [label], VOTER_IMAGE_DATABASE_NAME)
+        os.remove(uploaded_image_path) 
         return jsonify(success=True)
     else:
         return jsonify(success=False, error="File not uploaded properly!")
