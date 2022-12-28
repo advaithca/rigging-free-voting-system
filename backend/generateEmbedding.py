@@ -13,7 +13,7 @@ def generate(images:list, labels:list, database:str):
     labelsEmbeddingsMap = dict()
     for image, label in zip(images,labels):
         img = face_recognition.load_image_file(image)
-        encoding = face_recognition.face_encodings(img)
+        encoding = face_recognition.face_encodings(img)[0]
         if label not in labelsEmbeddingsMap:
             labelsEmbeddingsMap[label] = [encoding]
         else:
@@ -24,12 +24,12 @@ def generate(images:list, labels:list, database:str):
     )
     
     db = client[database]
-    coll = db['imageEmbeddings']
+    coll = db["imageEmbeddings"]
     toInsert = []
     for label, encodings in labelsEmbeddingsMap.items():
         for encoding in encodings:
             toInsert.append({
                 "name":label,
-                "encoding":encoding
+                "encoding":[float(numpy_value) for numpy_value in encoding]
             })
     coll.insert_many(toInsert)
