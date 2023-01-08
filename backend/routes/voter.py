@@ -6,10 +6,11 @@ import generateEmbedding
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
 VOTER_IMAGE_DATABASE_NAME = "voter" 
 
-voter_info_api = Blueprint('voter_info_route', __name__)
+voter_info_api = Blueprint('voter_info_route', __name__, url_prefix="/voter")
 
 @voter_info_api.route("/upload/voterDetails", methods = ["POST"])
 def upload():
+    #print(request.form, request.files) # 
     label = request.form.get("label")
     print(f"The label obtained from the frontend is: {label}")
 
