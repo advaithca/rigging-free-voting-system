@@ -36,7 +36,7 @@ const About = () => {
           <p>Our project infrastructure includes the admin panel which requires login credentials. The system is restricted and cannot be accessed outside of the polling station. In the polling station, firstly, the voter has to input their legal details (NIC) for authentication which redirects the voter to the Facial Recognition window, where the voter's face is validated through this method then all the candidates lists will be displayed on the screen of the voter. The program keeps the vote count of every candidate on submission of each vote and displays the result of the election as soon as the voting process ends, which means no delay in results.</p>
         
       </div>
-      // Testing the API
+      {/* Testing the API */}
       {/* <div className='max-w-[1240px] mx-auto'>
         <p>{data.age}</p>
         <p>{data.date}</p>
