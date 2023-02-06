@@ -19,9 +19,9 @@ const Analytics = () => {
             images with good resolution. Manage user database, add, remove or
             edit user entries.
           </p>
-          <Link to="/login">
+          <Link to="/imageUpload">
             <button className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto md:mx-0 py-3">
-              Log In
+              Upload image
             </button>
           </Link>
         </div>
