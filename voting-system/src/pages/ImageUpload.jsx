@@ -9,6 +9,8 @@ const ImageUpload = () => {
     const [files, setFiles] = useState({ photo: null });
     const [resultAlert, setResultAlert] = useState(null);
 
+    const maxFileSizeMB = 10
+
     const handleInputChange = (event) => {
         setInputs((prevInputs) => ({
             ...prevInputs,
@@ -23,13 +25,18 @@ const ImageUpload = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setResultAlert(null);
-        api.uploadImage(inputs.label, files.photo).then((res) => {
-            if (res.success === true) {
-                setResultAlert(<CustomAlert message="Successfully submitted!" ifAlertSuccess={true}/>);
-            } else {
-                setResultAlert(<CustomAlert message={res.error} ifAlertSuccess={false}/>);
-            }
-        });
+        const photoSizeMB = files.photo.size / (1024 * 1024);
+        if (photoSizeMB > maxFileSizeMB) {
+            setResultAlert(<CustomAlert message="File size > 10 MB!" ifAlertSuccess={false}/>);
+        } else {
+            api.uploadImage(inputs.label, files.photo).then((res) => {
+                if (res.success === true) {
+                    setResultAlert(<CustomAlert message="Successfully submitted!" ifAlertSuccess={true}/>);
+                } else {
+                    setResultAlert(<CustomAlert message={res.error} ifAlertSuccess={false}/>);
+                }
+            });
+        }
         setInputs({
             label: "",
         });
