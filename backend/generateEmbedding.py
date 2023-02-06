@@ -13,11 +13,17 @@ def generate(images:list, labels:list, database:str):
     labelsEmbeddingsMap = dict()
     for image, label in zip(images,labels):
         img = face_recognition.load_image_file(image)
-        encoding = face_recognition.face_encodings(img)[0]
-        if label not in labelsEmbeddingsMap:
-            labelsEmbeddingsMap[label] = [encoding]
-        else:
-            labelsEmbeddingsMap[label].append(encoding)
+        faces = face_recognition.face_encodings(img)
+        if len(faces) == 0:
+            raise Exception("No faces detected in image")
+        elif len(faces) > 1:
+            raise Exception("Multiple faces detected in image")
+        else: 
+            encoding = face_recognition.face_encodings(img)[0]
+            if label not in labelsEmbeddingsMap:
+                labelsEmbeddingsMap[label] = [encoding]
+            else:
+                labelsEmbeddingsMap[label].append(encoding)
 
     client = pymongo.MongoClient(
         "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"

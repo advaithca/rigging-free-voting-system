@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import api from "../api/voter.js";
+import CustomAlert from "../components/CustomAlert";
 
 const ImageUpload = () => {
     const [inputs, setInputs] = useState({
         label: "",
     });
     const [files, setFiles] = useState({ photo: null });
+    const [resultAlert, setResultAlert] = useState(null);
 
     const handleInputChange = (event) => {
         setInputs((prevInputs) => ({
@@ -20,11 +22,17 @@ const ImageUpload = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        api.uploadImage(inputs.label, files.photo).then(() => console.log("Have submitted!", inputs.label, files.photo));
+        setResultAlert(null);
+        api.uploadImage(inputs.label, files.photo).then((res) => {
+            if (res.success === true) {
+                setResultAlert(<CustomAlert message="Successfully submitted!" ifAlertSuccess={true}/>);
+            } else {
+                setResultAlert(<CustomAlert message={res.error} ifAlertSuccess={false}/>);
+            }
+        });
         setInputs({
             label: "",
         });
-        setFiles({ photo: null });
     }
 
     return (<div className="w-full h-screen">
@@ -56,6 +64,7 @@ const ImageUpload = () => {
                             Upload
                         </button>
                     </form>
+                    {resultAlert}
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ const uploadImage = async (imageLabel, image) => {
               'Content-Type': 'multipart/form-data'
             }
         });
-        console.log(res.data); /* TODO: Errors will need to be displayed */
+        return res.data;
     } catch (e) {
         alert(e);
     }

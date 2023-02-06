@@ -23,10 +23,14 @@ def upload():
         if not os.path.exists(app.instance_path):
             os.mkdir(app.instance_path)
         uploaded_image_path = os.path.join(app.instance_path, secure_filename(uploaded_image.filename))
-        uploaded_image.save(uploaded_image_path) 
-        generateEmbedding.generate([uploaded_image_path], [label], VOTER_IMAGE_DATABASE_NAME)
-        os.remove(uploaded_image_path) 
-        return jsonify(success=True)
+        uploaded_image.save(uploaded_image_path)  
+        try: 
+            generateEmbedding.generate([uploaded_image_path], [label], VOTER_IMAGE_DATABASE_NAME)
+            return jsonify(success=True)
+        except Exception as e:
+            return jsonify(success=False, error = str(e))
+        finally:
+            os.remove(uploaded_image_path) 
     else:
         return jsonify(success=False, error="File not uploaded properly!")
 
