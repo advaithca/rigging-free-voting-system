@@ -4,6 +4,7 @@ import os
 import face_recognition
 import urllib.request as ur
 import generateEmbedding 
+import json
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
 VOTER_IMAGE_DATABASE_NAME = "voter" 
@@ -38,18 +39,17 @@ def upload():
 
 @voter_info_api.route("/imageProcess", methods = ["POST"])
 def process():
-    print(request)
-    """
-    base64 = 
+    base64 = json.loads(request.data).get("base64")
     decoded_image = ur.urlopen(base64)
     image_loaded = face_recognition.load_image_file(decoded_image)
-    faces = face_recognition.face_encodings(img)
-        if len(faces) == 0:
-            return jsonify(success=False, error="No faces detected in image")
-        elif len(faces) > 1:
-            return jsonify(success=False, error="Multiple faces detected in image")
-        else: 
-            return jsonify(success=True, embedding=faces[0])
-    """
-    return jsonify(success=True, embedding="myembedding")
-
+    faces = face_recognition.face_encodings(image_loaded)
+    if len(faces) == 0:
+        return jsonify(success=False, error="No faces detected in image")
+    elif len(faces) > 1:
+        return jsonify(success=False, error="Multiple faces detected in image")
+    else: 
+        print("The embedding generated is ", faces[0])
+        """
+        Returning prediction
+        """
+        return jsonify(success=True, result="Result of face recognition model")
