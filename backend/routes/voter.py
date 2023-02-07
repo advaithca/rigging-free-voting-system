@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify, current_app as app
 from werkzeug.utils import secure_filename
 import os 
+import face_recognition
+import urllib.request as ur
 import generateEmbedding 
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
@@ -33,4 +35,21 @@ def upload():
             os.remove(uploaded_image_path) 
     else:
         return jsonify(success=False, error="File not uploaded properly!")
+
+@voter_info_api.route("/imageProcess", methods = ["POST"])
+def process():
+    print(request)
+    """
+    base64 = 
+    decoded_image = ur.urlopen(base64)
+    image_loaded = face_recognition.load_image_file(decoded_image)
+    faces = face_recognition.face_encodings(img)
+        if len(faces) == 0:
+            return jsonify(success=False, error="No faces detected in image")
+        elif len(faces) > 1:
+            return jsonify(success=False, error="Multiple faces detected in image")
+        else: 
+            return jsonify(success=True, embedding=faces[0])
+    """
+    return jsonify(success=True, embedding="myembedding")
 
