@@ -37,3 +37,19 @@ def upload():
     else:
         return jsonify(success=False, error="File not uploaded properly!")
 
+@voter_info_api.route("/imageProcess", methods = ["POST"])
+def process():
+    base64 = json.loads(request.data).get("base64")
+    decoded_image = ur.urlopen(base64)
+    image_loaded = face_recognition.load_image_file(decoded_image)
+    faces = face_recognition.face_encodings(image_loaded)
+    if len(faces) == 0:
+        return jsonify(success=False, error="No faces detected in image")
+    elif len(faces) > 1:
+        return jsonify(success=False, error="Multiple faces detected in image")
+    else: 
+        print("The embedding generated is ", faces[0])
+        """
+        Returning prediction
+        """
+        return jsonify(success=True, result="Result of face recognition model")
