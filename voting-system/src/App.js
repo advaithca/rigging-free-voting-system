@@ -6,6 +6,7 @@ import {
 import Home from './pages/Home';
 import Login from './pages/Login';
 import ImageUpload from './pages/ImageUpload';
+import VoterScanning from './pages/VoterScanning';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
   {
     path: "/imageUpload",
     element: <ImageUpload />
-  }  
+  },
+  {
+    path: "/voterScanning",
+    element: <VoterScanning />
+  } 
 ]);
 
 function App() {
