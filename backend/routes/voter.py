@@ -24,7 +24,7 @@ def upload():
             return jsonify(success=False, error="File extension not allowed! Only JPEG and PNG files are allowed")
 
         if not os.path.exists(app.instance_path):
-            os.mkdir(app.instance_path)
+            os.makedirs(app.instance_path)
         uploaded_image_path = os.path.join(app.instance_path, secure_filename(uploaded_image.filename))
         uploaded_image.save(uploaded_image_path)  
         try: 
