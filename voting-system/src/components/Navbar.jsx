@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-scroll';
+import LogoutButton from './auth/LogoutButton';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -30,6 +31,7 @@ const Navbar = () => {
           <li className='p-4 border-b border-gray-600'>About</li> 
           <li className='p-4'>Contact</li>
       </ul>
+      <LogoutButton />
     </div>
   );
 };

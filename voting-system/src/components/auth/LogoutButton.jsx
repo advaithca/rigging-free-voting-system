@@ -17,9 +17,10 @@ const LogoutButton = () => {
     };
 
     return (
-        <button onClick={handleLogout} className='border text-white px-6 py-2 my-4'>
-            Logout
-        </button>
+        user ? (
+            <button onClick={handleLogout} className='border text-white px-6 py-2 my-4'>
+                Logout
+            </button>) : null
     );
 };
 

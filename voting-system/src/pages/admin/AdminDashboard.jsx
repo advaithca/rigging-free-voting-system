@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoutButton from "../../components/auth/LogoutButton";
 
 const AdminDashboard = () => {
 
@@ -12,8 +13,9 @@ const AdminDashboard = () => {
                     <div className="max-w-[320px] mx-auto py-16">
                         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
                         <Link to="/imageUpload">
-                            <span className="text-gray-600">Upload Image</span>{" "}
+                            <div className="text-gray-600">Upload Image</div>{" "}
                         </Link>
+                        <LogoutButton />
                     </div>
                 </div>
             </div>
