@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { UserAuth } from '../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = UserAuth();
@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
     return <div>Loading...</div>
   }
   if (!user) {
-    return <Navigate to='/' />;
+    return <Navigate to='/login' />;
   }
   return <Outlet />;
 };

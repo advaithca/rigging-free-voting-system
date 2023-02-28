@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from '../context/AuthContext';
+import { UserAuth } from '../../context/AuthContext';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const Signup = () => {
     setError('');
     try {
       await createUser(email, password);
-      navigate('/account')
+      navigate('/imageUpload')
     } catch (e) {
       setError(e.message);
       console.log(e.message);

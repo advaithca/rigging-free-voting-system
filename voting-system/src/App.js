@@ -4,13 +4,12 @@ import {
   RouterProvider
 } from "react-router-dom";
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import ImageUpload from './pages/ImageUpload';
+import Login from './pages/auth/Login';
+import Signup from './pages/auth/Signup';
+import ImageUpload from './pages/admin/ImageUpload';
 import VoterScanning from './pages/VoterScanning';
 import { AuthContextProvider } from './context/AuthContext';
-import ProtectedRoute from './pages/ProtectedRoute';
-import Account from './pages/Account';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -29,19 +28,15 @@ const router = createBrowserRouter([
       element: <Signup />
     },
     {
-      path: "/imageUpload",
-      element: <ImageUpload />
-    },
-    {
       path: "/voterScanning",
       element: <VoterScanning />
     },
     {
-      path: "/account",
+      path: "/imageUpload",
       element: <ProtectedRoute />,
       children: [{
-        path: "/account",
-        element: <Account />
+        path: "/imageUpload",
+        element: <ImageUpload />
       }]
     }
     ]
