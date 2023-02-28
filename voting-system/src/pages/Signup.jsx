@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
+import { UserAuth } from '../context/AuthContext';
 
-const Login = () => {
-
+const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const { signIn, changeLoading } = UserAuth();
+  const [error, setError] = useState('')
+  const { createUser } = UserAuth();
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    changeLoading(true)
-    setError('')
+    setError('');
     try {
-      const data = await signIn(email, password)
-        navigate('/account')
+      await createUser(email, password);
+      navigate('/account')
     } catch (e) {
-      setError(e.message)
-      console.log(e.message)
+      setError(e.message);
+      console.log(e.message);
     }
   };
 
@@ -30,7 +28,7 @@ const Login = () => {
       <div className="fixed w-full px-4 py-24 z-50">
         <div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
           <div className="max-w-[320px] mx-auto py-16">
-            <h1 className="text-3xl font-bold">Log In</h1>
+            <h1 className="text-3xl font-bold">Sign Up</h1>
 
             <form onSubmit={handleSubmit} className="w-full flex flex-col py-4">
               <input
@@ -48,21 +46,23 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button className="bg-green-600 py-3 my-6 rounded font-bold">
-                Log In
+                Sign Up
               </button>
               
-
+              
               <p className="py-4 flex justify-between">
-              <Link to="/signup">
-                <span className="text-gray-600">Create Account</span>{" "}
+              <Link to="/login">  
+                <span className="text-gray-600">Log In</span>{" "}
               
               </Link>
+
               <Link to="/">
               
                 
                 <span className="text-gray-600 ">Home</span>{" "}
               </Link>
               </p>
+              
             </form>
           </div>
         </div>
@@ -71,4 +71,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

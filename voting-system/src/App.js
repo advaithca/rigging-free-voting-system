@@ -5,26 +5,47 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import ImageUpload from './pages/ImageUpload';
 import VoterScanning from './pages/VoterScanning';
+import { AuthContextProvider } from './context/AuthContext';
+import ProtectedRoute from './pages/ProtectedRoute';
+import Account from './pages/Account';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <AuthContextProvider />,
+    children: [{
+      path: "/",
+      element: <Home />
+    },
+    {
+      path: "/login",
+      element: <Login />
+    },
+    {
+      path: "/signup",
+      element: <Signup />
+    },
+    {
+      path: "/imageUpload",
+      element: <ImageUpload />
+    },
+    {
+      path: "/voterScanning",
+      element: <VoterScanning />
+    },
+    {
+      path: "/account",
+      element: <ProtectedRoute />,
+      children: [{
+        path: "/account",
+        element: <Account />
+      }]
+    }
+    ]
   },
-  {
-    path: "/login",
-    element: <Login />
-  },
-  {
-    path: "/imageUpload",
-    element: <ImageUpload />
-  },
-  {
-    path: "/voterScanning",
-    element: <VoterScanning />
-  } 
 ]);
 
 function App() {
