@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from '../../context/AuthContext';
+import CustomAlert from "../../components/CustomAlert";
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('')
   const { createUser } = UserAuth();
+
   const navigate = useNavigate()
+  const [resultAlert, setResultAlert] = useState(null); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +21,8 @@ const Signup = () => {
     } catch (e) {
       setError(e.message);
       console.log(e.message);
-    }
+      setResultAlert(<CustomAlert message={e.message} ifAlertSuccess={false} />);
+    } 
   };
 
   return (
@@ -48,6 +52,7 @@ const Signup = () => {
               <button className="bg-green-600 py-3 my-6 rounded font-bold">
                 Sign Up
               </button>
+              {resultAlert}
               
               
               <p className="py-4 flex justify-between">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
+import CustomAlert from "../../components/CustomAlert";
 
 const Login = () => {
 
@@ -9,6 +10,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { signIn, changeLoading } = UserAuth();
+  const [resultAlert, setResultAlert] = useState(null); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const Login = () => {
     } catch (e) {
       setError(e.message)
       console.log(e.message)
+      setResultAlert(<CustomAlert message={e.message} ifAlertSuccess={false} />);
     }
   };
 
@@ -50,7 +53,7 @@ const Login = () => {
               <button className="bg-green-600 py-3 my-6 rounded font-bold">
                 Log In
               </button>
-              
+              {resultAlert}
 
               <p className="py-4 flex justify-between">
               <Link to="/signup">
