@@ -16,7 +16,7 @@ const Login = () => {
     setError('')
     try {
       const data = await signIn(email, password)
-        navigate('/imageUpload')
+        navigate('/adminDashboard')
     } catch (e) {
       setError(e.message)
       console.log(e.message)

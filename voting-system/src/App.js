@@ -10,6 +10,7 @@ import ImageUpload from './pages/admin/ImageUpload';
 import VoterScanning from './pages/VoterScanning';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
     {
       path: "/voterScanning",
       element: <VoterScanning />
+    },
+    {
+      path: "/adminDashboard",
+      element: <ProtectedRoute />,
+      children: [{
+        path: "/adminDashboard",
+        element: <AdminDashboard />
+      }]
     },
     {
       path: "/imageUpload",
