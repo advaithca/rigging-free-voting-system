@@ -5,9 +5,14 @@ import face_recognition
 import urllib.request as ur
 import generateEmbedding 
 import json
+from FaceRecognizer import FaceRecognizer
+from getEmbeddings import getCursor
+from joblib import dump
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
 VOTER_IMAGE_DATABASE_NAME = "voter" 
+DB_URL = "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
+collectionNameForImageData = "imageEmbeddings"
 
 voter_info_api = Blueprint('voter_info_route', __name__, url_prefix="/voter")
 
@@ -53,3 +58,15 @@ def process():
         Returning prediction
         """
         return jsonify(success=True, result="Result of face recognition model")
+
+@voter_info_api.route("/train", methods = ["POST"])
+def trainSVM():
+    cursor = getCursor(DB_URL=DB_URL, collectionName=collectionNameForImageData, databaseName="voter")
+    svm = FaceRecognizer(cursor)
+
+    svm.make_model()
+    svm.train()
+
+    # Once training is done
+    svm.test()
+    dump(svm, 'svm.joblib')
