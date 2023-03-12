@@ -35,7 +35,7 @@ def generate(images:list, labels:list, database:str):
     for label, encodings in labelsEmbeddingsMap.items():
         for encoding in encodings:
             toInsert.append({
-                "name":label,
-                "encoding":[float(numpy_value) for numpy_value in encoding]
+                "label":label,
+                "embedding":[float(numpy_value) for numpy_value in encoding]
             })
     coll.insert_many(toInsert)
