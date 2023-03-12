@@ -28,7 +28,7 @@ const updateModel = async (imageLabel, image) => {
         });
         return res.data;
     } catch (e) {
-        alert(e);
+        console.log(e);
     }
 }
 

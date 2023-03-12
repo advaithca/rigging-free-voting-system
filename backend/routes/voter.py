@@ -92,6 +92,7 @@ def updateSVM():
     if not os.path.exists(pickle_path):
         return jsonify(success=False, error="Model not up!")
 
+    print(pickle_path) #
     try:
         model = load(pickle_path)
 
