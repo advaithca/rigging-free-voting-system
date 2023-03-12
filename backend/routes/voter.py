@@ -72,12 +72,17 @@ def trainSVM():
     if os.path.exists(pickle_path):
         os.remove(pickle_path)
 
-    cursor = getCursor(DB_URL=DB_URL, collectionName=collectionNameForImageData, databaseName="voter")
-    svm = FaceRecognizer(cursor)
+    try:
+        cursor = getCursor(DB_URL=DB_URL, collectionName=collectionNameForImageData, databaseName="voter")
+        svm = FaceRecognizer(cursor)
 
-    svm.make_model()
-    svm.train()
+        svm.make_model()
+        svm.train()
 
-    # Once training is done
-    #svm.test()
-    dump(svm, pickle_path)
+        # Once training is done
+        #svm.test()
+        dump(svm, pickle_path)
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error = str(e))
+    
