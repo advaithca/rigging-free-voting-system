@@ -152,3 +152,6 @@ voting-system/.env.production.local
 voting-system/npm-debug.log*
 voting-system/yarn-debug.log*
 voting-system/yarn-error.log*
+
+#joblib
+svm.joblib
