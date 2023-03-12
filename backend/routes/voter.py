@@ -7,7 +7,7 @@ import generateEmbedding
 import json
 from FaceRecognizer import FaceRecognizer
 from getEmbeddings import getCursor
-from joblib import dump
+from joblib import dump, load
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
 VOTER_IMAGE_DATABASE_NAME = "voter" 
@@ -44,6 +44,11 @@ def upload():
 
 @voter_info_api.route("/imageProcess", methods = ["POST"])
 def process():
+    pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
+    if not os.path.exists(pickle_path):
+        print(pickle_path)
+        return jsonify(success = False, error="ML model not up! Kindly train model") 
+
     base64 = json.loads(request.data).get("base64")
     decoded_image = ur.urlopen(base64)
     image_loaded = face_recognition.load_image_file(decoded_image)
@@ -57,7 +62,9 @@ def process():
         """
         Returning prediction
         """
-        return jsonify(success=True, result="Result of face recognition model")
+        model = load(pickle_path)
+        res = model.get_prediction(faces)
+        return jsonify(success=True, result="Result of face recognition model" + str(res))
 
 @voter_info_api.route("/train", methods = ["POST"])
 def trainSVM():
