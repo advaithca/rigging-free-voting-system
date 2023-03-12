@@ -34,6 +34,9 @@ class FaceRecognizer():
         predictions = self.model.predict(self.X_test)
         self.score = accuracy_score(predictions, self.y_test)
     
+    def update(self, x, y):
+        self.model.fit(x, y)
+
     def get_prediction(self, data):
         return self.model.predict(data) 
     

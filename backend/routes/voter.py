@@ -86,3 +86,21 @@ def trainSVM():
     except Exception as e:
         return jsonify(success=False, error = str(e))
     
+@voter_info_api.route("/updateModel", methods = ["POST"])
+def updateSVM():
+    pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
+    if os.path.exists(pickle_path):
+        os.remove(pickle_path)
+
+    try:
+        model = load(pickle_path)
+
+        image = request.files.get("photo")
+        faces = face_recognition.face_encodings(image)
+        model.update(faces, [request.form.get("label")])
+
+        dump(model, pickle_path)
+        print("Updated ML model")
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error = str(e))
