@@ -89,8 +89,8 @@ def trainSVM():
 @voter_info_api.route("/updateModel", methods = ["POST"])
 def updateSVM():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
-    if os.path.exists(pickle_path):
-        os.remove(pickle_path)
+    if not os.path.exists(pickle_path):
+        return jsonify(success=False, error="Model not up!")
 
     try:
         model = load(pickle_path)
