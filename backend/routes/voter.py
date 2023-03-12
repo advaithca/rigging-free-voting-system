@@ -68,6 +68,10 @@ def process():
 
 @voter_info_api.route("/train", methods = ["POST"])
 def trainSVM():
+    pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
+    if os.path.exists(pickle_path):
+        os.remove(pickle_path)
+
     cursor = getCursor(DB_URL=DB_URL, collectionName=collectionNameForImageData, databaseName="voter")
     svm = FaceRecognizer(cursor)
 
@@ -75,5 +79,5 @@ def trainSVM():
     svm.train()
 
     # Once training is done
-    svm.test()
-    dump(svm, 'svm.joblib')
+    #svm.test()
+    dump(svm, pickle_path)
