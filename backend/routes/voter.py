@@ -5,7 +5,7 @@ import face_recognition
 import urllib.request as ur
 import generateEmbedding 
 import json
-from FaceRecognizer import FaceRecognizer
+from FaceRecognizer import FaceRecognizer, validateVoter
 from getEmbeddings import getCursor
 from joblib import dump, load
 import pymongo
@@ -93,7 +93,13 @@ def process():
         """
         model = load(pickle_path)
         res = model.get_prediction(faces)
-        return jsonify(success=True, result="Result of face recognition model" + str(res))
+        ans = validateVoter(str(res))
+        if ans:
+            result = "Valid voter"
+        else:
+            result = "Invalid voter"
+
+        return jsonify(success=True, result=f"Result of face recognition model {str(res)}. {result}")
 
 @voter_info_api.route("/train", methods = ["POST"])
 def trainSVM():

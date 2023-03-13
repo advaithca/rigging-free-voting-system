@@ -5,6 +5,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import numpy as np 
+import pymongo as pm
 
 class FaceRecognizer():
     def __init__(self,data):
@@ -40,3 +41,23 @@ class FaceRecognizer():
     def get_prediction(self, data):
         return self.model.predict(data) 
     
+def validateVoter(name:str):
+    '''
+    Returns whether a voter of given name is Valid or Not
+    '''
+    connection = pm.MongoClient(
+        "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
+    )
+    db = connection['voterDetails']
+    coll = db['Details']
+    query = {"name":name}
+
+    doc = coll.find(query)
+
+    if len(doc) == 0:
+        coll.insert_one({
+            "name": name
+        })
+        return True
+    else:
+        return False
