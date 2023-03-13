@@ -9,7 +9,6 @@ const ImageUpload = () => {
     });
     const [files, setFiles] = useState({ photo: null });
     const [resultAlert, setResultAlert] = useState(null);
-    const [modelAlert, setModelAlert] = useState(null);
 
     const maxFileSizeMB = 10
 
@@ -37,14 +36,6 @@ const ImageUpload = () => {
                 } else {
                     setResultAlert(<CustomAlert message={res.error} ifAlertSuccess={false} />);
                 }
-                api.updateModel(inputs.label, files.photo).then((res) => {
-                    console.log(res)
-                    if (res.success === true) {
-                        setModelAlert(<CustomAlert message="ML Model successfully submittec" ifAlertSuccess={true} />);
-                    } else {
-                        setModelAlert(<CustomAlert message={res.error + " You will have to either delete uploaded details or train model again on whole voter database"} ifAlertSuccess={false} />);
-                    }
-                });
             });
         }
         setInputs({
@@ -79,7 +70,6 @@ const ImageUpload = () => {
                 <LogoutButton />
             </form>
             {resultAlert}
-            {modelAlert}
         </div>
     );
 }

@@ -15,6 +15,9 @@ const AdminDashboard = () => {
                         <Link to="/imageUpload">
                             <div className="text-gray-600">Upload Image</div>{" "}
                         </Link>
+                        <Link to="/trainModel">
+                            <div className="text-gray-600">Train Model</div>{" "}
+                        </Link>
                         <LogoutButton />
                     </div>
                 </div>

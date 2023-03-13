@@ -2,8 +2,8 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:5000"
 const IMAGE_UPLOAD_URL_SUFFIX = "/voter/upload/voterDetails";
+const TRAIN_MODEL_URL_SUFFIX = "/voter/train";
 const VOTER_SCAN_URL_SUFFIX = "/voter/imageProcess";
-const UPDATE_MODEL_URL_SUFFIX = "/voter/updateModel";
 
 const uploadImage = async (imageLabel, image) => {
     console.log("Frontend api called with", imageLabel, image);
@@ -19,16 +19,12 @@ const uploadImage = async (imageLabel, image) => {
     }
 }
 
-const updateModel = async (imageLabel, image) => {
+const trainModel = async () => {
     try {
-        const res = await axios.post(BASE_URL + UPDATE_MODEL_URL_SUFFIX, { label: imageLabel, photo: image }, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
+        const res = await axios.post(BASE_URL + TRAIN_MODEL_URL_SUFFIX, {});
         return res.data;
     } catch (e) {
-        console.log(e);
+        alert(e);
     }
 }
 
@@ -41,4 +37,4 @@ const scanVoterImage = async (base64) => {
     }
 }
 
-export default { uploadImage, scanVoterImage, updateModel };
+export default { uploadImage, scanVoterImage, trainModel };

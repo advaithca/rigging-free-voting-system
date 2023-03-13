@@ -47,7 +47,7 @@ def process():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
     if not os.path.exists(pickle_path):
         print(pickle_path)
-        return jsonify(success = False, error="ML model not up! Kindly train model") 
+        return jsonify(success = False, error="No ML model up! Kindly train model") 
 
     base64 = json.loads(request.data).get("base64")
     decoded_image = ur.urlopen(base64)
@@ -70,7 +70,7 @@ def process():
 def trainSVM():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
     if os.path.exists(pickle_path):
-        os.remove(pickle_path)
+        os.remove(pickle_path) # remove old model dump and create new one based on latest data 
 
     try:
         cursor = getCursor(DB_URL=DB_URL, collectionName=collectionNameForImageData, databaseName="voter")
@@ -80,28 +80,9 @@ def trainSVM():
         svm.train()
 
         # Once training is done
-        #svm.test()
+        svm.test()
         dump(svm, pickle_path)
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error = str(e))
     
-@voter_info_api.route("/updateModel", methods = ["POST"])
-def updateSVM():
-    pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
-    if not os.path.exists(pickle_path):
-        return jsonify(success=False, error="Model not up!")
-
-    print(pickle_path) #
-    try:
-        model = load(pickle_path)
-
-        image = request.files.get("photo")
-        faces = face_recognition.face_encodings(image)
-        model.update(faces, [request.form.get("label")])
-
-        dump(model, pickle_path)
-        print("Updated ML model")
-        return jsonify(success=True)
-    except Exception as e:
-        return jsonify(success=False, error = str(e))
