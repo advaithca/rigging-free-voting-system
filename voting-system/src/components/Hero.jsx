@@ -26,7 +26,7 @@ const Hero = () => {
 
           </p>
         </div>
-        <p className='md:text-2xl text-xl font-bold text-gray-500'>Monitor your polling booths real-time with new MTCNN face recognition technology. </p>
+        <p className='md:text-2xl text-xl font-bold text-gray-500'>Monitor your polling booths in real-time. </p>
 
         <Link to="/voterScanning">
           <button className='bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto py-3 text-black'>
