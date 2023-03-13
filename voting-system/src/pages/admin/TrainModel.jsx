@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import api from "../../api/voter.js";
 import CustomAlert from "../../components/CustomAlert";
 import LogoutButton from '../../components/auth/LogoutButton';
+import Navbar from "../../components/Navbar.jsx";
 
 const TrainModel = () => {
     const [resultAlert, setResultAlert] = useState(null);
@@ -11,7 +12,7 @@ const TrainModel = () => {
         setResultAlert(null);
         api.trainModel().then((res) => {
             if (res.success === true) {
-                setResultAlert(<CustomAlert message="Successfully trained!" ifAlertSuccess={true} />);
+                setResultAlert(<CustomAlert message={`Successfully trained! Accuracy ${res.accuracy}`} ifAlertSuccess={true} />);
             } else {
                 setResultAlert(<CustomAlert message={res.error} ifAlertSuccess={false} />);
             }
@@ -19,6 +20,8 @@ const TrainModel = () => {
     }
 
     return (
+        <div>
+        <Navbar />
         <div className="max-w-[320px] mx-auto py-16 text-white">
             <h1 className="text-3xl font-bold">Image Upload</h1>
 
@@ -29,6 +32,7 @@ const TrainModel = () => {
                 <LogoutButton />
             </form>
             {resultAlert}
+        </div>
         </div>
     );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import api from "../../api/voter.js";
 import CustomAlert from "../../components/CustomAlert";
 import LogoutButton from '../../components/auth/LogoutButton';
+import Navbar from "../../components/Navbar.jsx";
 
 const ImageUpload = () => {
     const [inputs, setInputs] = useState({
@@ -44,32 +45,36 @@ const ImageUpload = () => {
     }
 
     return (
-        <div className="max-w-[320px] mx-auto py-16 text-white">
-            <h1 className="text-3xl font-bold">Image Upload</h1>
+        <div>
+            <Navbar />
+            <div className="max-w-[320px] mx-auto py-16 text-white">
+                <h1 className="text-3xl font-bold">Image Upload</h1>
 
-            <form className="w-full flex flex-col py-4" onSubmit={handleSubmit}>
-                <input
-                    className="p-3 my-2 bg-gray-700 rouded"
-                    type="text"
-                    placeholder="Label"
-                    name="label"
-                    onChange={handleInputChange}
-                    value={inputs.label}
-                    required
-                />
-                <input
-                    className="p-3 my-2 bg-gray-700 rouded"
-                    type="file"
-                    name="photo"
-                    onChange={handleFileChange}
-                    required
-                />
-                <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold">
-                    Upload
-                </button>
-                <LogoutButton />
-            </form>
-            {resultAlert}
+                <form className="w-full flex flex-col py-4" onSubmit={handleSubmit}>
+                    <input
+                        className="p-3 my-2 bg-gray-700 rouded"
+                        type="text"
+                        placeholder="Label"
+                        name="label"
+                        onChange={handleInputChange}
+                        value={inputs.label}
+                        required
+                    />
+                    <input
+                        className="p-3 my-2 bg-gray-700 rouded"
+                        type="file"
+                        name="photo"
+                        onChange={handleFileChange}
+                        required
+                    />
+                    <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold">
+                        Upload
+                    </button>
+                    <LogoutButton />
+                </form>
+                {resultAlert}
+            </div>
+
         </div>
     );
 }

@@ -82,7 +82,7 @@ def trainSVM():
         # Once training is done
         svm.test()
         dump(svm, pickle_path)
-        return jsonify(success=True)
+        return jsonify(success=True,accuracy=svm.score)
     except Exception as e:
         return jsonify(success=False, error = str(e))
     
