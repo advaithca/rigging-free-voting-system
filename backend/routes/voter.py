@@ -30,6 +30,19 @@ def setPasscode():
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error = str(e))
+    
+@voter_info_api.route("/getPasscode", methods = ["GET"])
+def getPasscode():
+    try:
+        client = pymongo.MongoClient(
+        "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
+        )
+        coll = client["voter"]["passcode"]
+        passcode = coll.find_one({}).get("passcode")
+        print(passcode)
+        return jsonify(success=True, passcode=passcode)
+    except Exception as e:
+        return jsonify(success=False, error = str(e))
 
 
 @voter_info_api.route("/upload/voterDetails", methods = ["POST"])
