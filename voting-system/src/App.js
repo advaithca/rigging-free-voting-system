@@ -12,6 +12,7 @@ import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import TrainModel from './pages/admin/TrainModel';
+import SetPasscode from './pages/admin/SetPasscode';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
       children: [{
         path: "/trainModel",
         element: <TrainModel />
+      }]
+    },
+    {
+      path: "/setPasscode",
+      element: <ProtectedRoute />,
+      children: [{
+        path: "/setPasscode",
+        element: <SetPasscode />
       }]
     }
     ]

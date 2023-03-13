@@ -8,6 +8,7 @@ import json
 from FaceRecognizer import FaceRecognizer
 from getEmbeddings import getCursor
 from joblib import dump, load
+import pymongo
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
 VOTER_IMAGE_DATABASE_NAME = "voter" 
@@ -15,6 +16,21 @@ DB_URL = "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?
 collectionNameForImageData = "imageEmbeddings"
 
 voter_info_api = Blueprint('voter_info_route', __name__, url_prefix="/voter")
+
+@voter_info_api.route("/setPasscode", methods = ["POST"])
+def setPasscode():
+    passcode = request.form.get("code")
+
+    try:
+        client = pymongo.MongoClient(
+        "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
+        )
+        coll = client["voter"]["passcode"]
+        coll.update_one({}, {"$set": {"passcode": passcode}}, upsert=True)
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error = str(e))
+
 
 @voter_info_api.route("/upload/voterDetails", methods = ["POST"])
 def upload():

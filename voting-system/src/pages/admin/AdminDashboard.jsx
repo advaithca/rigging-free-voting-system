@@ -12,6 +12,9 @@ const AdminDashboard = () => {
                 <div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
                     <div className="max-w-[320px] mx-auto py-16">
                         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+                        <Link to="/setPasscode">
+                            <div className="text-gray-600">Set Passcode</div>{" "}
+                        </Link>
                         <Link to="/imageUpload">
                             <div className="text-gray-600">Upload Image</div>{" "}
                         </Link>
