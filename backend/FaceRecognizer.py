@@ -23,7 +23,7 @@ class FaceRecognizer():
 
     
     def make_model(self):
-        pca = RandomizedPCA(n_components=64, whiten=True, random_state=42)
+        pca = RandomizedPCA(n_components=40, whiten=True, random_state=42)
         svc = SVC(kernel='rbf', class_weight='balanced')
         self.model = make_pipeline(pca, svc)
     
@@ -52,9 +52,9 @@ def validateVoter(name:str):
     coll = db['Details']
     query = {"name":name}
 
-    doc = coll.find(query)
-
-    if len(doc) == 0:
+    doc_count = coll.count_documents(query)
+    print(doc_count)
+    if doc_count == 0:
         coll.insert_one({
             "name": name
         })
