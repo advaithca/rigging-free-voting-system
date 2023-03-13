@@ -22,7 +22,7 @@ class FaceRecognizer():
 
     
     def make_model(self):
-        pca = RandomizedPCA(n_components=50, whiten=True, random_state=42)
+        pca = RandomizedPCA(n_components=64, whiten=True, random_state=42)
         svc = SVC(kernel='rbf', class_weight='balanced')
         self.model = make_pipeline(pca, svc)
     
