@@ -14,10 +14,10 @@ const Navbar = () => {
     <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
       <h1 className='w-full text-3xl font-bold text-[#00df9a]'>VOTE.</h1>
       <ul className='hidden md:flex'>
-      <li className='p-4 cursor-pointer'> <Link  to="home"  smooth={true} duration={500}>Home</Link> </li>
-      <li className='p-4 cursor-pointer'> <Link  to="admin"  smooth={true} offset={-60} duration={500}>Admin</Link> </li>
+      <li className='p-4 cursor-pointer'> <Link  to="/"  smooth={true} duration={500}>Home</Link> </li>
+      <li className='p-4 cursor-pointer'> <Link  to="/adminDashboard"  smooth={true} offset={-60} duration={500}>Admin</Link> </li>
       <li className='p-4 cursor-pointer'> <Link  to="contact"  smooth={true} offset={-100} duration={500}>Contact</Link> </li>
-      <li className='p-4 cursor-pointer'> <Link  to="about"  smooth={true} offset={-80} duration={500}>About</Link> </li>
+      <li className='p-4 cursor-pointer'> <a  href="#About"  smooth={true} offset={-80} duration={500}>About</a> </li>
       
       </ul>
       <div onClick={handleNav} className='block md:hidden'>

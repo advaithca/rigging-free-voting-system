@@ -23,7 +23,7 @@ const Newsletter = () => {
           </div>
           <p>
             A customer care executive will assist you {' '}
-            <span className='text-[#00df9a]'>Immedietly.</span>
+            <span className='text-[#00df9a]'>Immediately.</span>
           </p>
         </div>
       </div>
