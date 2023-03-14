@@ -13,16 +13,16 @@ const AdminDashboard = () => {
                     <div className="max-w-[320px] mx-auto py-16">
                         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
                         <Link to="/setPasscode">
-                            <div className="text-gray-600">Set Passcode</div>{" "}
+                            <div className="text-gray-600 hover:text-white">Set Passcode</div>{" "}
                         </Link>
                         <Link to="/imageUpload">
-                            <div className="text-gray-600">Upload Image</div>{" "}
+                            <div className="text-gray-600 hover:text-white">Upload Image</div>{" "}
                         </Link>
                         <Link to="/trainModel">
-                            <div className="text-gray-600">Train Model</div>{" "}
+                            <div className="text-gray-600 hover:text-white">Train Model</div>{" "}
                         </Link>
                         <Link to="/displayVoterDetails">
-                            <div className="text-gray-600">Voter Details You Uploaded</div>{" "}
+                            <div className="text-gray-600 hover:text-white">Voter Details You Uploaded</div>{" "}
                         </Link>
                         <LogoutButton />
                     </div>

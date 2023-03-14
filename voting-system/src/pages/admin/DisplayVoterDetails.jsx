@@ -43,7 +43,7 @@ const VoterDetails = () => {
                         {voterData}
                 </div>
                 <div className="w-full flex flex-col py-4">
-                    <button className="bg-green-600 py-3 my-6 rounded font-bold" onClick={handleClick}>
+                    <button className="bg-green-600 py-3 my-6 rounded font-bold hover:bg-green-900" onClick={handleClick}>
                         Refresh
                     </button>
                 </div>

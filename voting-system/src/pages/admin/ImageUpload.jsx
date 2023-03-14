@@ -67,7 +67,7 @@ const ImageUpload = () => {
                         onChange={handleFileChange}
                         required
                     />
-                    <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold">
+                    <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold hover:bg-green-900">
                         Upload
                     </button>
                     <LogoutButton />

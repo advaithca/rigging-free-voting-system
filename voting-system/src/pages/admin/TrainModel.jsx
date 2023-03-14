@@ -26,10 +26,9 @@ const TrainModel = () => {
             <h1 className="text-3xl font-bold">Image Upload</h1>
 
             <form className="w-full flex flex-col py-4" onSubmit={handleSubmit}>
-                <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold">
+                <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold hover:bg-green-900">
                     Train Model
                 </button>
-                <LogoutButton />
             </form>
             {resultAlert}
         </div>
