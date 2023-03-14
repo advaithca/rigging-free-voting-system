@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../../api/voter.js";
-import CustomAlert from "../../components/CustomAlert";
 import LogoutButton from '../../components/auth/LogoutButton';
 import Navbar from "../../components/Navbar.jsx";
-import voter from "../../api/voter.js";
 
 const VoterDetails = () => {
     const [resultAlert, setResultAlert] = useState(null);
