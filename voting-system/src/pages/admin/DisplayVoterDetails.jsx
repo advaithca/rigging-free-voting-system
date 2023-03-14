@@ -33,7 +33,7 @@ const VoterDetails = () => {
     return (
         <div>
         <Navbar />
-        <div className="max-w-[320px] mx-auto py-16 text-white">
+        <div className="px-40 py-16 text-white">
             <h1 className="text-3xl font-bold">Voter Details</h1>
             <table className="table-fixed border-separate border border-slate-500">
                 <thead>
