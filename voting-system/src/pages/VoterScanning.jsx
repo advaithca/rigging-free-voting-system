@@ -24,7 +24,7 @@ const VoterScanning = () => {
         api.scanVoterImage(pictureBase64Encoding).then((res) => {
             console.log(res)
             if (res.success === true) {
-                setResultAlert(<CustomAlert message={res.result} ifAlertSuccess={true} />);
+                setResultAlert(<CustomAlert message={res.result} ifAlertSuccess={res.validity} />);
             } else {
                 setResultAlert(<CustomAlert message={res.error} ifAlertSuccess={false} />);
             }

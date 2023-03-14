@@ -13,6 +13,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import TrainModel from './pages/admin/TrainModel';
 import SetPasscode from './pages/admin/SetPasscode';
+import VoterDetails from './pages/admin/DisplayVoterDetails';
+import Voter from './api/voter';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
       children: [{
         path: "/setPasscode",
         element: <SetPasscode />
+      }]
+    },
+    {
+      path: "/displayVoterDetails",
+      element: <ProtectedRoute />,
+      children: [{
+        path: "/displayVoterDetails",
+        element: <VoterDetails />
       }]
     }
     ]

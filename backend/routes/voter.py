@@ -92,14 +92,14 @@ def process():
         Returning prediction
         """
         model = load(pickle_path)
-        res = model.get_prediction(faces)
+        res = model.get_prediction(faces,threshold=0.7)
         ans = validateVoter(str(res))
         if ans:
             result = "Valid voter"
         else:
             result = "Invalid voter"
 
-        return jsonify(success=True, result=f"Result of face recognition model {str(res)}. {result}")
+        return jsonify(success=True, result=f"Result of face recognition model {str(res)}. {result}", validity=ans)
 
 @voter_info_api.route("/train", methods = ["POST"])
 def trainSVM():
