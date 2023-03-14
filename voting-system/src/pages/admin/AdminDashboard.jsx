@@ -21,6 +21,9 @@ const AdminDashboard = () => {
                         <Link to="/trainModel">
                             <div className="text-gray-600">Train Model</div>{" "}
                         </Link>
+                        <Link to="/displayVoterDetails">
+                            <div className="text-gray-600">Voter Details You Uploaded</div>{" "}
+                        </Link>
                         <LogoutButton />
                     </div>
                 </div>

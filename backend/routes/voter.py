@@ -121,3 +121,15 @@ def trainSVM():
     except Exception as e:
         return jsonify(success=False, error = str(e))
     
+@voter_info_api.route("/getDetails", methods = ["POST"])
+def getVoterDetails():
+    client = pymongo.MongoClient(
+        "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
+        )
+    coll = client["voter"]["imageEmbeddings"]
+    result = coll.find()
+    aList = []
+    for doc in result:
+        aList.append([doc['label'],doc['embedding']])
+        
+    return jsonify(success=True, data=aList)
