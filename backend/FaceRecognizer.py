@@ -65,7 +65,7 @@ class FaceRecognizer:
             if predictedProbabilities[0][i] > threshold:
                 predictedName = self.model.classes_[i]
                 break
-        
+        print(predictedProbabilities, self.model.classes_)
         return predictedName
 
 def validateVoter(name:str):

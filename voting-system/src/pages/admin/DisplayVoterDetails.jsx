@@ -15,10 +15,10 @@ const VoterDetails = () => {
             setVoterData(() => 
                 res.data.map((e, id) => {
                     return (
-                        <tr>
-                            <td className="border border-slate-600">{e[0]}</td>
-                            <td className="overflow-hidden border border-slate-600">{e[1].toString()}</td>
-                        </tr>
+                        <div className="flex gap-2 m-1"> 
+                            <div className="p-4 inline-flex border border-slate-600 w-1/3 hover:bg-gray-100 hover:text-black">{e[0]}</div>
+                            <div className="p-4 inline-flex border border-slate-600 w-2/3 overflow-hidden hover:bg-gray-100 hover:text-black">{e[1].toString()}</div>
+                        </div>
                     );
                 })
             );
@@ -32,28 +32,23 @@ const VoterDetails = () => {
     }
     return (
         <div>
-        <Navbar />
-        <div className="px-40 py-16 text-white">
-            <h1 className="text-3xl font-bold">Voter Details</h1>
-            <table className="table-fixed border-separate border border-slate-500">
-                <thead>
-                    <tr className="w-100">    
-                        <th className="border border-slate-600 w-1/3">Label</th>
-                        <th className="border border-slate-600 w-2/3 overflow-hidden">Embedding</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {voterData}
-                </tbody>
-            </table>
-            <div className="w-full flex flex-col py-4">
-                <button className="bg-green-600 py-3 my-6 rounded font-bold" onClick={handleClick}>
-                    Refresh
-                </button>
-                <LogoutButton />
+            <Navbar />
+            <div className="px-40 py-16 text-white">
+                <h1 className="text-3xl font-bold">Voter Details</h1>
+                <div className="mt-1 grid grid-cols-1 gap-2 border-separate border border-slate-500 overflow-hidden">
+                        <div className="flex gap-2 m-1">    
+                            <div className="p-4 inline-flex border font-extrabold border-slate-600 w-1/3 hover:bg-gray-100 hover:text-black">Label</div>
+                            <div className="p-4 inline-flex border font-extrabold border-slate-600 w-2/3 hover:bg-gray-100 hover:text-black">Embedding</div>
+                        </div>
+                        {voterData}
+                </div>
+                <div className="w-full flex flex-col py-4">
+                    <button className="bg-green-600 py-3 my-6 rounded font-bold" onClick={handleClick}>
+                        Refresh
+                    </button>
+                </div>
+                {resultAlert}
             </div>
-            {resultAlert}
-        </div>
         </div>
     );
 }
