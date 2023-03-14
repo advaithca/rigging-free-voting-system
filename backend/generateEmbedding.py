@@ -2,6 +2,7 @@ import face_recognition
 import pymongo
 
 def generate(images:list, labels:list, database:str):
+    def generate(images:list, labels:list, database:str):
     '''
     Generates Embeddings for each image in the images list, and saves them to a database.
     
