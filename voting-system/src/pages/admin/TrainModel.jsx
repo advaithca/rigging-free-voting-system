@@ -23,7 +23,7 @@ const TrainModel = () => {
         <div>
         <Navbar />
         <div className="max-w-[320px] mx-auto py-16 text-white">
-            <h1 className="text-3xl font-bold">Image Upload</h1>
+            <h1 className="text-3xl font-bold">Train Model</h1>
 
             <form className="w-full flex flex-col py-4" onSubmit={handleSubmit}>
                 <button type="submit" className="bg-green-600 py-3 my-6 rounded font-bold hover:bg-green-900">

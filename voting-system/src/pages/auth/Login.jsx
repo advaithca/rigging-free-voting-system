@@ -51,20 +51,20 @@ const Login = () => {
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className="bg-green-600 py-3 my-6 rounded font-bold">
+                <button className="bg-green-600 py-3 my-6 rounded font-bold hover:bg-green-900 hover:text-white">
                   Log In
                 </button>
                 {resultAlert}
 
                 <p className="py-4 flex justify-between">
                 <Link to="/signup">
-                  <span className="text-gray-600">Create Account</span>{" "}
+                  <span className="text-gray-600 hover:text-white">Create Account</span>{" "}
                 
                 </Link>
                 <Link to="/">
                 
                   
-                  <span className="text-gray-600 ">Home</span>{" "}
+                  <span className="text-gray-600 hover:text-white">Home</span>{" "}
                 </Link>
                 </p>
               </form>
