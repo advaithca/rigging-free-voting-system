@@ -92,7 +92,7 @@ def process():
         Returning prediction
         """
         model = load(pickle_path)
-        res = model.get_prediction(faces,threshold=0.7)
+        res = model.get_prediction(faces,threshold=0.5)
         ans = validateVoter(str(res))
         if ans:
             result = "Valid voter"
