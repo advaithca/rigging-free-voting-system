@@ -33,7 +33,7 @@ const VoterScanning = () => {
 
     return (
         <div className="max-w-[320px] mx-auto py-16 text-white">
-            <h1 className="text-3xl font-bold">Live Elections</h1>
+            <h1 className="text-3xl font-bold py-4 flex items-center justify-center">Live Electoral Feed</h1>
             {WebcamComponent()}
             <button onClick={capture} className="bg-green-600 py-3 my-6 rounded font-bold w-full">Capture</button>
             <img height="150px" width="150px" src={pictureBase64Encoding} alt="Capture" />

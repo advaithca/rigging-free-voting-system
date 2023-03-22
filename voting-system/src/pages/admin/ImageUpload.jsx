@@ -49,7 +49,7 @@ const ImageUpload = () => {
             <Navbar />
             <div className="max-w-[320px] mx-auto py-16 text-white">
                 <h1 className="text-3xl font-bold">Image Upload</h1>
-                <p className="text-xl font-semibold text-white">
+                <p className="text-base font-semibold text-gray-400 py-2">
                     Upload the images of each verified voter (At least 2 per Voter). Once a fresh set of images have been uploaded, don't forget to Train the model.
                 </p>
                 <form className="w-full flex flex-col py-4" onSubmit={handleSubmit}>

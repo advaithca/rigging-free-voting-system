@@ -34,7 +34,7 @@ const VoterDetails = () => {
         <div>
             <Navbar />
             <div className="px-40 py-16 text-white">
-                <h1 className="text-3xl font-bold">Voter Details</h1>
+                <h1 className="text-3xl font-bold py-4">Voter Details</h1>
                 <div className="mt-1 grid grid-cols-1 gap-2 border-separate border border-slate-500 overflow-hidden">
                         <div className="flex gap-2 m-1">    
                             <div className="p-4 inline-flex border font-extrabold border-slate-600 w-1/3 hover:bg-gray-100 hover:text-black">Label</div>
