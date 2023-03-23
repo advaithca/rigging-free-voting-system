@@ -40,7 +40,7 @@ const scanVoterImage = async (base64) => {
 
 const voterDetails = async (base64) => {
     try {
-        const res = await axios.get(BASE_URL + VOTER_DETAILS, {base64: base64});
+        const res = await axios.get(BASE_URL + VOTER_DETAILS, {base64: base64, 'Access-Control-Allow-Origin':true});
         res.header("Access-Control-Allow-Origin", "*")
         return res.data;
     } catch(e) {
