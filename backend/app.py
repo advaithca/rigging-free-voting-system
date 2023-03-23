@@ -1,9 +1,9 @@
-from flask import Flask, jsonify
+"""from flask import Flask, jsonify
 import os
-from routes.voter import voter_info_api
+from routes.voter import voter_info_api"""
 #from flask_cors import CORS  
 
-PORT = 5000
+#PORT = 5000
 """FOLDER_NAME = "backend"
 INSTANCE_PATH = os.path.join(os.path.abspath(
     os.curdir), FOLDER_NAME, "instance")"""
@@ -25,11 +25,23 @@ def index():
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=PORT, debug=True)"""
-app = Flask(__name__)
+"""app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def index():
     return "Hello world"
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=PORT, debug=True)
+    app.run(host="0.0.0.0", port=PORT, debug=True)"""
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('test.html')
+
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000, debug=True)
