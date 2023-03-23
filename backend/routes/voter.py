@@ -40,7 +40,9 @@ def getPasscode():
         coll = client["voter"]["passcode"]
         passcode = coll.find_one({}).get("passcode")
         print(passcode)
-        return jsonify(success=True, passcode=passcode)
+        response = jsonify(success=True, passcode=passcode)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response
     except Exception as e:
         return jsonify(success=False, error = str(e))
 
@@ -121,7 +123,7 @@ def trainSVM():
     except Exception as e:
         return jsonify(success=False, error = str(e))
     
-@voter_info_api.route("/getDetails", methods = ["POST"])
+@voter_info_api.route("/getDetails", methods = ["GET","POST"])
 def getVoterDetails():
     client = pymongo.MongoClient(
         "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
@@ -131,5 +133,7 @@ def getVoterDetails():
     aList = []
     for doc in result:
         aList.append([doc['label'],doc['embedding']])
-        
-    return jsonify(success=True, data=aList)
+    
+    response = jsonify(success=True, data=aList)
+    # response.headers["Access-Control-Allow-Origin"] = "*"
+    return response

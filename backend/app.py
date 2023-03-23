@@ -1,28 +1,21 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 import os
 from routes.voter import voter_info_api
-from flask_cors import CORS  # comment this on deployment
+from flask_cors import CORS
 
 PORT = 5000
 FOLDER_NAME = "backend"
 INSTANCE_PATH = os.path.join(os.path.abspath(
     os.curdir), FOLDER_NAME, "instance")
 
-app = Flask(__name__, instance_path=INSTANCE_PATH)
-CORS(app,
-     resources={r'/*': {'origins': '*'}},
-     supports_credentials=True
-     )  # comment this on deployment
+app = Flask(__name__)
+CORS(app)
 
-#CORS(app, origins=["http:localhost:3000"])
 app.register_blueprint(voter_info_api)
-
 
 @app.route("/", methods=["GET"])
 def index():
-    print(request)
-    return jsonify(success=True)
-
+    return "Hello world"
 
 if __name__ == '__main__':
-    app.run(port=PORT, debug=True)
+    app.run(host="0.0.0.0", port=PORT, debug=True)
