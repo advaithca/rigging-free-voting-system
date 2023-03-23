@@ -9,7 +9,7 @@ from FaceRecognizer import FaceRecognizer, validateVoter
 from getEmbeddings import getCursor
 from joblib import dump, load
 import pymongo
-#from flask_cors import cross_origin
+from flask_cors import cross_origin
 
 ALLOWED_UPLOAD_EXTENSIONS = [".jpg", ".jpeg", ".png"]
 VOTER_IMAGE_DATABASE_NAME = "voter" 
@@ -19,7 +19,7 @@ collectionNameForImageData = "imageEmbeddings"
 voter_info_api = Blueprint('voter_info_route', __name__, url_prefix="/voter")
 
 @voter_info_api.route("/setPasscode", methods = ["POST"], endpoint='setPasscode')
-#@cross_origin
+@cross_origin
 def setPasscode():
     passcode = request.form.get("code")
 
@@ -50,7 +50,7 @@ def getPasscode():
 
 
 @voter_info_api.route("/upload/voterDetails", methods = ["POST"], endpoint='upload')
-#@cross_origin
+@cross_origin
 def upload():
     #print(request.form, request.files) # 
     label = request.form.get("label")
@@ -77,7 +77,7 @@ def upload():
         return jsonify(success=False, error="File not uploaded properly!")
 
 @voter_info_api.route("/imageProcess", methods = ["POST"],endpoint='process')
-#@cross_origin
+@cross_origin
 def process():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
     if not os.path.exists(pickle_path):
@@ -108,7 +108,7 @@ def process():
         return jsonify(success=True, result=f"Result of face recognition model {str(res)}. {result}", validity=ans)
 
 @voter_info_api.route("/train", methods = ["POST"],endpoint='trainSVM')
-#@cross_origin
+@cross_origin
 def trainSVM():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
     if os.path.exists(pickle_path):
@@ -129,7 +129,7 @@ def trainSVM():
         return jsonify(success=False, error = str(e))
     
 @voter_info_api.route("/getDetails", methods = ["GET"], endpoint='getVoterDetails')
-#@cross_origin
+@cross_origin
 def getVoterDetails():
     client = pymongo.MongoClient(
         "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
