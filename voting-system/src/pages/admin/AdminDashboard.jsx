@@ -46,7 +46,15 @@ const AdminDashboard = () => {
                             <div className="text-gray-600 hover:text-white px-4 text-2xl py-1">View Voter Data</div>{" "}
                         </div>
                         </Link>
-                        <LogoutButton />
+                        
+                       
+
+                        <p className="py-4 ">
+                        <LogoutButton />               
+                              <Link to="/">
+                              <span className="text-gray-600 hover:text-white pl-32">Home</span>{" "}
+                            </Link>
+                </p>
                     </div>
                 </div>
             </div>

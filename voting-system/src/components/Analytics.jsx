@@ -14,7 +14,7 @@ const Analytics = () => {
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
             User Images Database
           </h1>
-          <p className="text-xl">
+          <p className="text-lg">
             Upload image data of electoral voters. Please ensure clear blur free
             images with good resolution. Manage user database, add, remove or
             edit user entries.
