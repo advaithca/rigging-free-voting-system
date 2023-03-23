@@ -128,7 +128,8 @@ def trainSVM():
     except Exception as e:
         return jsonify(success=False, error = str(e))
     
-@voter_info_api.route("/getDetails", methods = ["GET"])
+@voter_info_api.route("/getDetails", methods = ["GET"], endpoint='getVoterDetails')
+@cross_origin
 def getVoterDetails():
     client = pymongo.MongoClient(
         "mongodb+srv://majorproject:majorproject@cluster0.ktbjam0.mongodb.net/?retryWrites=true&w=majority"
@@ -140,5 +141,5 @@ def getVoterDetails():
         aList.append([doc['label'],doc['embedding']])
     
     response = jsonify(success=True, data=aList)
-    response.headers.add("Access-Control-Allow-Origin", True)
+    # response.headers.add("Access-Control-Allow-Origin", True)
     return response
