@@ -17,12 +17,6 @@ CORS(app,
 #CORS(app, origins=["http:localhost:3000"])
 app.register_blueprint(voter_info_api)
 
-@app.after_request 
-def after_request(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    # Other headers can be added here if needed
-    return response
-
 @app.route("/", methods=["GET"])
 def index():
     print(request)
