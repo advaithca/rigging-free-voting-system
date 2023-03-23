@@ -18,7 +18,7 @@ collectionNameForImageData = "imageEmbeddings"
 
 voter_info_api = Blueprint('voter_info_route', __name__, url_prefix="/voter")
 
-@voter_info_api.route("/setPasscode", methods = ["POST"])
+@voter_info_api.route("/setPasscode", methods = ["POST"], endpoint='setPasscode')
 @cross_origin
 def setPasscode():
     passcode = request.form.get("code")
@@ -49,7 +49,7 @@ def getPasscode():
         return jsonify(success=False, error = str(e))
 
 
-@voter_info_api.route("/upload/voterDetails", methods = ["POST"])
+@voter_info_api.route("/upload/voterDetails", methods = ["POST"], endpoint='upload')
 @cross_origin
 def upload():
     #print(request.form, request.files) # 
@@ -76,7 +76,7 @@ def upload():
     else:
         return jsonify(success=False, error="File not uploaded properly!")
 
-@voter_info_api.route("/imageProcess", methods = ["POST"])
+@voter_info_api.route("/imageProcess", methods = ["POST"],endpoint='process')
 @cross_origin
 def process():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
@@ -107,7 +107,7 @@ def process():
 
         return jsonify(success=True, result=f"Result of face recognition model {str(res)}. {result}", validity=ans)
 
-@voter_info_api.route("/train", methods = ["POST"])
+@voter_info_api.route("/train", methods = ["POST"],endpoint='trainSVM')
 @cross_origin
 def trainSVM():
     pickle_path = os.path.join(os.getcwd(), "svm.joblib") # assuming run from main directory of whole project
