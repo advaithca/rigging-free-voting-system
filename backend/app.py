@@ -8,20 +8,24 @@ FOLDER_NAME = "backend"
 INSTANCE_PATH = os.path.join(os.path.abspath(
     os.curdir), FOLDER_NAME, "instance")
 
-app = Flask(__name__, instance_path=INSTANCE_PATH)
+#app = Flask(__name__, instance_path=INSTANCE_PATH)
 """CORS(app,
      resources={r'/*': {'origins': '*'}},
      supports_credentials=True
      )"""  # comment this on deployment
 
 #CORS(app, origins=["http:localhost:3000"])
-app.register_blueprint(voter_info_api)
+"""app.register_blueprint(voter_info_api)
 
 @app.route("/", methods=["GET"])
 def index():
     print(request)
     return jsonify(success=True)
 
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=PORT, debug=True)"""
+app = Flask(__name__)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=PORT, debug=True)
