@@ -4,6 +4,7 @@ from sklearn.decomposition import PCA
 from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 class FaceRecognizer:
     def __init__(self, collection):
@@ -45,7 +46,9 @@ class FaceRecognizer:
         '''
         Storing Accuracy score
         '''
-        accuracy = self.model.score(self.X_test, self.y_test)
+        y_pred = self.model.predict(self.X_test)
+        accuracy = accuracy_score(y_pred=y_pred, y_true=self.y_test)
+        print(accuracy)
         self.score = accuracy
     
     def update(self, x, y):
