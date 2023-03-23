@@ -17,6 +17,13 @@ collectionNameForImageData = "imageEmbeddings"
 
 voter_info_api = Blueprint('voter_info_route', __name__, url_prefix="/voter")
 
+@voter_info_api.after_request 
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    # Other headers can be added here if needed
+    return response
+
 @voter_info_api.route("/setPasscode", methods = ["POST"])
 def setPasscode():
     passcode = request.form.get("code")
