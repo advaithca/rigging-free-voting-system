@@ -1,11 +1,15 @@
 FROM python:3.9.13
 
-ENV APP_HOME /backend
-WORKDIR $APP_HOME
+WORKDIR /app
 
-COPY . /backend
+# Install app dependencies
+COPY requirements.txt ./
 
 RUN apt-get update && apt-get install -y cmake
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python app.py"]
+# Bundle app source
+COPY . .
+
+EXPOSE 5000
+CMD [ "flask", "run","--host","0.0.0.0","--port","5000"]
