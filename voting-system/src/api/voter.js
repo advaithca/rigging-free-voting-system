@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://childlike-birds-production.up.railway.app"
+const BASE_URL = "http://localhost:5000"
 const IMAGE_UPLOAD_URL_SUFFIX = "/voter/upload/voterDetails";
 const TRAIN_MODEL_URL_SUFFIX = "/voter/train";
 const VOTER_SCAN_URL_SUFFIX = "/voter/imageProcess";
