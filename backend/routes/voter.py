@@ -140,5 +140,5 @@ def getVoterDetails():
         aList.append([doc['label'],doc['embedding']])
     
     response = jsonify(success=True, data=aList)
-    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Origin", True)
     return response
