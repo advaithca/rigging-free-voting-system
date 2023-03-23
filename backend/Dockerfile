@@ -12,4 +12,5 @@ RUN pip install -r requirements.txt
 COPY . .
 
 EXPOSE 5000
-CMD [ "flask", "run","--host","0.0.0.0","--port","5000","--cert","cert.pem","--key","key.pem"]
+# CMD [ "flask", "run","--host","0.0.0.0","--port","5000","--cert","cert.pem","--key","key.pem"]
+ENTRYPOINT [ "gunicorn --certfile cert.pem --keyfile key.pem -b 0.0.0.0:5000 app:app" ]
